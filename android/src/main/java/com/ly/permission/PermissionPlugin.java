@@ -96,32 +96,11 @@ public class PermissionPlugin implements MethodCallHandler, PluginRegistry.Reque
     private String getManifestPermission(String permission) {
         String result;
         switch (permission) {
-            case "Calendar":
-                result = Manifest.permission.READ_CALENDAR;
-                break;
             case "Camera":
                 result = Manifest.permission.CAMERA;
                 break;
-            case "Contacts":
-                result = Manifest.permission.READ_CONTACTS;
-                break;
             case "Location":
                 result = Manifest.permission.ACCESS_FINE_LOCATION;
-                break;
-            case "Microphone":
-                result = Manifest.permission.RECORD_AUDIO;
-                break;
-            case "Phone":
-                result = Manifest.permission.CALL_PHONE;
-                break;
-            case "Sensors":
-                result = Manifest.permission.BODY_SENSORS;
-                break;
-            case "SMS":
-                result = Manifest.permission.READ_SMS;
-                break;
-            case "Storage":
-                result = Manifest.permission.READ_EXTERNAL_STORAGE;
                 break;
             default:
                 result = "ERROR";

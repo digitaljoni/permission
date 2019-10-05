@@ -212,21 +212,12 @@ class _MyAppState extends State<MyApp> {
 
   getPermissionsStatus() async {
     List<PermissionName> permissionNames = [];
-    if(a0) permissionNames.add(PermissionName.Calendar);
     if(a1) permissionNames.add(PermissionName.Camera);
-    if(a2) permissionNames.add(PermissionName.Contacts);
-    if(a3) permissionNames.add(PermissionName.Microphone);
     if(a4) permissionNames.add(PermissionName.Location);
-    if(a5) permissionNames.add(PermissionName.Phone);
-    if(a6) permissionNames.add(PermissionName.Sensors);
-    if(a7) permissionNames.add(PermissionName.SMS);
-    if(a8) permissionNames.add(PermissionName.Storage);
 
-    if(i0) permissionNames.add(PermissionName.Internet);
-    if(i1) permissionNames.add(PermissionName.Calendar);
+
+
     if(i2) permissionNames.add(PermissionName.Camera);
-    if(i3) permissionNames.add(PermissionName.Contacts);
-    if(i4) permissionNames.add(PermissionName.Microphone);
     if(i5) permissionNames.add(PermissionName.Location);
     message = '';
     List<Permissions> permissions = await Permission.getPermissionsStatus(permissionNames);
@@ -247,21 +238,10 @@ class _MyAppState extends State<MyApp> {
 
   requestPermissions() async {
     List<PermissionName> permissionNames = [];
-    if(a0) permissionNames.add(PermissionName.Calendar);
     if(a1) permissionNames.add(PermissionName.Camera);
-    if(a2) permissionNames.add(PermissionName.Contacts);
-    if(a3) permissionNames.add(PermissionName.Microphone);
     if(a4) permissionNames.add(PermissionName.Location);
-    if(a5) permissionNames.add(PermissionName.Phone);
-    if(a6) permissionNames.add(PermissionName.Sensors);
-    if(a7) permissionNames.add(PermissionName.SMS);
-    if(a8) permissionNames.add(PermissionName.Storage);
 
-    if(i0) permissionNames.add(PermissionName.Internet);
-    if(i1) permissionNames.add(PermissionName.Calendar);
     if(i2) permissionNames.add(PermissionName.Camera);
-    if(i3) permissionNames.add(PermissionName.Contacts);
-    if(i4) permissionNames.add(PermissionName.Microphone);
     if(i5) permissionNames.add(PermissionName.Location);
     message = '';
     var permissions = await Permission.requestPermissions(permissionNames);

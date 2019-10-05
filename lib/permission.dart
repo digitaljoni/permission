@@ -127,28 +127,10 @@ class Permission {
 }
 
 enum PermissionName {
-  // iOS
-  Internet,
-  // both
-  Calendar,
   // both
   Camera,
   // both
-  Contacts,
-  // both
-  Microphone,
-  // both
   Location,
-  // iOS
-  WhenInUse,
-  // Android
-  Phone,
-  // Android
-  Sensors,
-  // Android
-  SMS,
-  // Android
-  Storage
 }
 
 enum PermissionStatus { allow, deny, notDecided, notAgain, whenInUse, always }
@@ -163,38 +145,11 @@ class Permissions {
 String getPermissionString(PermissionName permissions) {
   String res;
   switch (permissions) {
-    case PermissionName.Internet:
-      res = 'Internet';
-      break;
-    case PermissionName.Calendar:
-      res = 'Calendar';
-      break;
     case PermissionName.Camera:
       res = 'Camera';
       break;
-    case PermissionName.Contacts:
-      res = 'Contacts';
-      break;
-    case PermissionName.Microphone:
-      res = 'Microphone';
-      break;
     case PermissionName.Location:
       res = 'Location';
-      break;
-    case PermissionName.WhenInUse:
-      res = 'WhenInUse';
-      break;
-    case PermissionName.Phone:
-      res = 'Phone';
-      break;
-    case PermissionName.Sensors:
-      res = 'Sensors';
-      break;
-    case PermissionName.SMS:
-      res = 'SMS';
-      break;
-    case PermissionName.Storage:
-      res = 'Storage';
       break;
     default:
       res = '';
