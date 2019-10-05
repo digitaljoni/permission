@@ -1,13 +1,9 @@
 #import "PermissionPlugin.h"
 #import <CoreLocation/CLLocationManager.h>
-#import <EventKit/EventKit.h>
-#import <Photos/PHPhotoLibrary.h>
-#import <Contacts/Contacts.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreLocation/CoreLocation.h>
 
 @import AVFoundation;
-@import CoreTelephony;
 CLLocationManager *locationManager;
 @implementation PermissionPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -25,18 +21,18 @@ CLLocationManager *locationManager;
         NSMutableArray *list = @[].mutableCopy;
         for (NSString *permissionName in permissions) {
             if ([@"Camera" isEqualToString:permissionName]){
-                PHAuthorizationStatus PHStatus = [PHPhotoLibrary authorizationStatus];
-                switch (PHStatus) {
-                    case PHAuthorizationStatusAuthorized:
+                AVAuthorizationStatus AVStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+                switch (AVStatus) {
+                    case AVAuthorizationStatusAuthorized:
                         [list addObject:@0];
                         break;
-                    case PHAuthorizationStatusDenied:
+                    case AVAuthorizationStatusDenied:
                         [list addObject:@1];
                         break;
-                    case PHAuthorizationStatusNotDetermined:
+                    case AVAuthorizationStatusNotDetermined:
                         [list addObject:@2];
                         break;
-                    case PHAuthorizationStatusRestricted:
+                    case AVAuthorizationStatusRestricted:
                         [list addObject:@1];
                         break;
                     default:
@@ -77,24 +73,12 @@ CLLocationManager *locationManager;
         NSDictionary *argsMap = call.arguments;
         NSArray *permissions = argsMap[@"permissions"];
         for (NSString *permissionName in permissions) {
-            if ([@"Camera" isEqualToString:permissionName]){
-                [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus PHStatus) {
-                    switch (PHStatus) {
-                        case PHAuthorizationStatusAuthorized:
-                            result(@0);
-                            break;
-                        case PHAuthorizationStatusDenied:
-                            result(@1);
-                            break;
-                        case PHAuthorizationStatusNotDetermined:
-                            result(@2);
-                            break;
-                        case PHAuthorizationStatusRestricted:
-                            result(@1);
-                            break;
-                        default:
-                            result(@2);
-                            break;
+            if ([@"Microphone" isEqualToString:permissionName]){
+                [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                    if (granted) {
+                        result(@0);
+                    } else {
+                        result(@1);
                     }
                 }];
             } else if ([@"Location" isEqualToString:permissionName]){
