@@ -72,14 +72,16 @@ CLLocationManager *locationManager;
     } else if ([@"requestPermissions" isEqualToString:call.method]) {
         NSDictionary *argsMap = call.arguments;
         NSArray *permissions = argsMap[@"permissions"];
+        NSMutableArray *list = @[].mutableCopy;
         for (NSString *permissionName in permissions) {
             if ([@"Camera" isEqualToString:permissionName]){
                 [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                     if (granted) {
-                        result(@0);
+                        [list addObject:@0];
                     } else {
-                        result(@1);
+                        [list addObject:@1];
                     }
+                    result(list);
                 }];
             } else if ([@"Location" isEqualToString:permissionName]){
                 locationManager = [[CLLocationManager alloc] init];
