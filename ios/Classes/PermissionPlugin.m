@@ -73,7 +73,7 @@ CLLocationManager *locationManager;
         NSDictionary *argsMap = call.arguments;
         NSArray *permissions = argsMap[@"permissions"];
         for (NSString *permissionName in permissions) {
-            if ([@"Microphone" isEqualToString:permissionName]){
+            if ([@"Camera" isEqualToString:permissionName]){
                 [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
                     if (granted) {
                         result(@0);
